@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Create{% endblock %}
+{% block content %}
+<div class="g">
+<div class="container px-4 px-lg-5">
+    <div class="gg">
+        {% if update %}
+        <h1>Update To-Do</h1>
+        {% else %}
+        <h1>Add To-do</h1>
+        {% endif %}
+    </div>
+</div>
+    </div>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+          {% if update %}
+            <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ u_form|crispy }}
+                </fieldset>
+                <div class='form-group'>
+                    <button class="btn btn-outline-dark" type="submit">Update</button>
+                </div>
+                <br>
+            </form>
+          {% else %}
+          <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class='form-group'>
+                    <button class="btn btn-outline-dark" type="submit">Add</button>
+                </div>
+                <br>
+            </form>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+{% endblock %}
